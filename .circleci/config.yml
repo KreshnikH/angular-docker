@@ -2,7 +2,7 @@ version: 2
 jobs: 
   build: 
     docker:
-      - image: circleci/node:21-browser
+      - image: circleci/node:22.13.1-browser
 
     working_directory: ~/repo
 
