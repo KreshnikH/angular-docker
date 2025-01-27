@@ -38,10 +38,19 @@ jobs:
     docker:
       - image: circleci/node:16-browsers 
     steps:
-      # Replace this with steps to deploy to users
+      - checkout
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+          name: Verify Chrome installation
+          command: google-chrome --version
+      - run:
+          name: Set CHROME_BIN environment variable
+          command: export CHROME_BIN=$(which google-chrome)
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm test --passWithNoTests
 workflows:
   build-and-test:
     jobs:
