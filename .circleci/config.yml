@@ -31,7 +31,7 @@ jobs:
 
       - run: 
           command: |
-            aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
+            docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
 
       - run: 
           command: |
