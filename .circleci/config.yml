@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Build Docker Image
-          command: docker build -t $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:1.0 .
+          command: docker build -t $AWS_ECR_REPOSITORY .
 
       - run:
           name: Docker Login to AWS ECR
