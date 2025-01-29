@@ -8,6 +8,7 @@ jobs:
 
     steps:
       - checkout
+      - setup_remote_docker
 
       - restore_cache:
          keys: 
@@ -23,3 +24,15 @@ jobs:
 
       - run: npm run build --prod
       # - run: npm test --passWithNoTests
+
+      - run: 
+          command: |
+            docker build -t $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:1.0 .
+
+      - run: 
+          command: |
+            aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
+
+      - run: 
+          command: |
+            docker push $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:1.0 
